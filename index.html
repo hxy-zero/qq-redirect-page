@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>请用浏览器打开</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; padding: 20px; text-align: center; }
+    .container { max-width: 600px; margin: 50px auto; padding: 30px; 
+                background: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .btn { display: inline-block; padding: 12px 25px; background: #007bff; 
+           color: white; text-decoration: none; border-radius: 5px; margin: 15px 0; }
+    .steps { text-align: left; margin: 25px 0; }
+    .step { margin-bottom: 15px; display: flex; }
+    .step-num { min-width: 30px; height: 30px; background: #007bff; color: white;
+                border-radius: 50%; display: flex; align-items: center; 
+                justify-content: center; margin-right: 15px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>最佳体验提示</h2>
+    <p>当前页面在QQ内可能无法正常显示，请在浏览器中打开</p>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>点击右上角 <strong>•••</strong> 按钮</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>选择 <strong>"在浏览器打开"</strong></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>返回此页面继续访问</div>
+      </div>
+    </div>
+    
+    <a href="#" id="directLink" class="btn">直接访问网站</a>
+    
+    <p style="color:#666; margin-top:30px">
+      或复制链接到浏览器：<br>
+      <span id="targetUrl" style="word-break:break-all"></span>
+    </p>
+  </div>
+
+  <script>
+    // 获取目标URL
+    const params = new URLSearchParams(window.location.search);
+    let targetUrl = params.get('target') || 'https://icov-wiki.netlify.app/';
+    
+    // 显示目标URL
+    document.getElementById('targetUrl').textContent = targetUrl;
+    document.getElementById('directLink').href = targetUrl;
+    
+    // 尝试自动跳转（部分浏览器允许）
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 5000); // 5秒后尝试跳转
+  </script>
+</body>
+</html>
